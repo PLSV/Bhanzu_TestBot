@@ -1,0 +1,15 @@
+# Ignore all .log files
+*.log
+
+# Ignore all files in the build directory
+/build/
+
+# Ignore specific file
+secrets.txt
+
+# Ignore all the .db .pdf files
+*.db
+*.pdf
+
+#Ignore all binaries and executables
+.idea
