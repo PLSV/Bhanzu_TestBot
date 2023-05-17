@@ -70,4 +70,4 @@ def generate_improvement_prompt():
 
 
 def get_intro_prompt(intro_parameters):
-    return f"""Hello, my name is {intro_parameters["name"]} and I belong to the grade {intro_parameters["grade"]}. I am being taught by {intro_parameters["teacher"]}."""
+    return f"""Hello, my name is {intro_parameters["name"]} and I belong to the grade {intro_parameters["grade"]}. I am being taught by {intro_parameters["teacher"]}. Nice to meet you!!"""
