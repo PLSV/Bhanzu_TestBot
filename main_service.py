@@ -2,7 +2,7 @@ import utilities as util
 import database_utilities as dbutil
 import openai_service as aiservice
 import prompt_completions as prompts
-
+from application_exception import ApplicationException
 
 def quizmaster():
     try:
@@ -36,11 +36,9 @@ def introfunction(intro_payload):
                 "content": intro_prompt
             }]
             dbutil.add_to_db("quiz_chat", quiz_prompt)
-        response = aiservice.get_completion_from_messages(messages=quiz_prompt)
+        response = aiservice.get_completion_from_messages(messages=quiz_prompt, temperature=0)
         quiz_prompt.append(response)
         dbutil.add_to_db("quiz_chat", quiz_prompt)
         return {"response": response["content"]}
     except Exception as e:
-        return {"Error": f"Encountered an exception of type {e}"}
-
-        
+        raise ApplicationException(f"Encountered an exception of type {e}")
