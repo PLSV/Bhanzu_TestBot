@@ -67,3 +67,7 @@ def generate_improvement_prompt():
     
     The scope for improvement will be based on the explanation I had given for my choice for all the questions
     """
+
+
+def get_intro_prompt(intro_parameters):
+    return f"""Hello, my name is {intro_parameters["name"]} and I belong to the {intro_parameters["grade"]} grade. I am being taught by {intro_parameters["teacher"]}"""
