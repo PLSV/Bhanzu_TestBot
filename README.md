@@ -7,6 +7,7 @@ pip3 install openai
 pip3 install reportlabs
 pip3 install pickledb
 pip3 install boto3
+pip3 install fastapi uvicorn
 ```
 
 ```
