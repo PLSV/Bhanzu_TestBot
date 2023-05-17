@@ -8,12 +8,17 @@ def quizmaster():
     try:
         starting_prompt = dbutil.get_from_db("quiz_chat")
         if not starting_prompt:
-            starting_prompt = [{
-                                "role": "system",
-                                "content": prompts.set_role_prompt({
-                                    "no_of_questions": 5
-                                })
-                            }]
+            starting_prompt = [
+                {
+                    "role": "system",
+                    "content": prompts.setup_roleplay_prompt()
+                },
+                {
+                    "role": "assistant",
+                    "content": prompts.set_role_prompt({
+                        "no_of_questions": 5
+                    })
+                }]
             dbutil.add_to_db("quiz_chat", starting_prompt)
         response = aiservice.get_completion_from_messages(messages=starting_prompt)
         starting_prompt.append(response)
