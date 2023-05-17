@@ -8,3 +8,9 @@ pip3 install reportlabs
 pip3 install pickledb
 pip3 install boto3
 ```
+
+```
+Make sure that the openai key and the organization id has been set in the environment variables
+OPENAI_API_KEY = <your key>
+OPENAI_ORGANISATION_ID = <your org id>
+```
