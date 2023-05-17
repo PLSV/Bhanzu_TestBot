@@ -22,6 +22,3 @@ def main_function():
         return response
     except Exception as e:
         print("Encountered an exception", e)
-
-
-main_function()
