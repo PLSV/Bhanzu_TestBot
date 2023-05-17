@@ -26,7 +26,7 @@ def introfunction(intro_payload):
     try:
         intro = dbutil.get_from_db("intro_message")
         if intro:
-            return {"prompt_response": f"You have already introduced yourself. your name is {intro['name']} and you are {intro['age']} years old"}
+            return {"response": f"You have already introduced yourself. your name is {intro['name']} and you belong to the grade {intro['grade']}"}
         dbutil.add_to_db("intro_message", intro_payload)
         intro_prompt = prompts.get_intro_prompt(intro_payload)
         quiz_prompt = dbutil.get_from_db("quiz_chat")
