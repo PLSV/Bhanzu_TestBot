@@ -37,7 +37,9 @@ def introfunction(intro_payload):
             }]
             dbutil.add_to_db("quiz_chat", quiz_prompt)
         response = aiservice.get_completion_from_messages(messages=quiz_prompt)
-        return {"response": response}
+        quiz_prompt.append(response)
+        dbutil.add_to_db("quiz_chat", quiz_prompt)
+        return {"response": response["content"]}
     except Exception as e:
         return {"Error": f"Encountered an exception of type {e}"}
 
