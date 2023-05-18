@@ -8,10 +8,12 @@ import main_service
 from fastapi import Request
 from application_exception import ApplicationException
 from response_helper import ErrorResponse, SuccessResponse
+from routers.routers_source import router
 
 app = FastAPI()
-
+app.include_router(router)
 logger = logging.getLogger("gunicorn.error")
+
 
 @app.post("/introduction")
 async def introduce_yourself(
@@ -25,6 +27,7 @@ async def introduce_yourself(
     except ApplicationException as ae:
         error_response = ErrorResponse(ae.error, "application-exception")
         return JSONResponse(content=error_response.dict(), status_code=ae.status_code)
+
 
 if __name__ == "__main__":
     logger.info("Starting fast api app for CLM service")
