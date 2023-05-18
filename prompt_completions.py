@@ -1,9 +1,13 @@
 def set_role_prompt(prompt_parameters):
+    no_of_questions = prompt_parameters.get("no_of_questions", 5)
+    if no_of_questions < 2:
+        no_of_questions = 2
+
     question_prompt = \
         f"""
         I am going to give you a set of instructions that you will abide by as a quizmaster_setup as shown below:
         
-        1. You are going to generate a total of {prompt_parameters.get("no_of_questions", 5)} Multiple Choice Questions.
+        1. You are going to generate a total of {no_of_questions} Multiple Choice Questions.
         2. There will be a total of 5 options, out of which only one is the right answer.
         3. Please ensure that the wrong answers will be as close to the right answer as possible.
         4. The mathematics concepts will be based on the grade that was mentioned earlier.
