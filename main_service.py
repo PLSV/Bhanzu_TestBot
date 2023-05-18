@@ -38,7 +38,21 @@ def quizmaster_setup():
     except Exception as e:
         return {"Error": f"Encountered an exception of type {e}"}
 
-quizmaster_setup()
+def get_questions():
+    quiz_chat = dbutil.get_from_db("quiz_chat")
+    quiz_chat.extend([
+        {
+            "role": "user",
+            "content": prompts.get_question_prompt()
+        }
+    ])
+    response = aiservice.get_completion_from_messages(messages=quiz_chat)
+    quiz_chat.append(response)
+    dbutil.add_to_db("quiz_chat", quiz_chat)
+    questions = util.extract_json_from_string(response.get("content"))
+    print(questions)
+    dbutil.add_to_db("questions", questions)
+    return questions
 
 def introfunction(intro_payload):
     try:

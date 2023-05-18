@@ -68,15 +68,21 @@ def setup_roleplay_prompt():
 
 
 def get_generated_questions_json():
-    return """]
+    return """
         [
             {
-                Question #1
+                "Question": "Question text",
+                "Options": [Option 1, Option 2, Option 3 ...]
             },
             {
-                Question #2
+                "Question": "Question text",
+                "Options": [Option 1, Option 2, Option 3 ...]
             },
             ...
+            {
+                "Question": "Question text",
+                "Options": [Option 1, Option 2, Option 3 ...]
+            }
         ]
     """
 
@@ -86,4 +92,13 @@ def get_options_for_student():
     Please give the following options to the participant:
     1. Revaluate Results: On choosing this option, you will check if the results are correct once again by going through the answers given.
     2. End Test: On choosing this option, you will end the test and reveal the results to the participant.
+    """
+
+def get_question_prompt():
+    return f"""
+    Based on the instructions given earlier, your task is to create json of list of questions based on the format below:
+    
+    {get_generated_questions_json()}
+
+    Ensure that the json object is enclosed in between '<JSON>' and '</JSON>'.
     """
