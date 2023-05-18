@@ -111,4 +111,5 @@ def submit_answers_prompt(answers):
     {answers}
     
     Please evaluate the answers and give a score for the explanation given for the answer. This score will be from 0 to 10.
+    If the score is less than 10, please give a reason for the score given and what went wrong.
     """
