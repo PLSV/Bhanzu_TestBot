@@ -38,7 +38,7 @@ def get_completion_without_context(prompt, model="gpt-3.5-turbo", temperature=1)
 if __name__ == "__main__":
     prompt = f"""
     
-  your task is to create json of list of questions with following parameters:
+    your task is to create json of list of questions with following parameters:
         1. there will be total of 10 questions
         2. There will be a total of 4 options, out of which only one is the right answer.
         3. each option will be a json object with key as A B C D and value as the answer.
