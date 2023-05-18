@@ -1,0 +1,23 @@
+<html>
+<head>
+    <title>Question</title>
+</head>
+<body>
+
+    <h1>Question {{ question_number }}</h1>
+    <p>{{ question_text }}</p><br>
+    <p>A {{option_1}}</p><br>
+    <p>B {{option_2}}</p><br>
+    <p>C {{option_3}}</p><br>
+    <p>D {{option_4}}</p><br>
+    <p>D {{option_5}}</p><br>
+    <form method="POST" action="/practice/capture/response">
+        <label for="option_chosen">correct option:</label><br>
+        <input type="text" id="option_chosen" name="option_chosen"><br><br>
+        <input type="text" name="reason">
+        <input type="hidden" name="question_number" value="{{ question_number }}">
+        <input type="hidden" name="test_id" value="{{ question_text }}">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
