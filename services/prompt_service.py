@@ -1,8 +1,8 @@
-import utilities as util
-import database_utilities as dbutil
+import utils.utility as util
+import utils.database_utility as dbutil
 import openai_service as aiservice
 import prompt_completions as prompts
-from application_exception import ApplicationException
+from exceptions.application_exception import ApplicationException
 
 def quizmaster_setup():
     try:

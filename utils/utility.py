@@ -2,7 +2,7 @@ import boto3
 from reportlab.pdfgen import canvas
 import re
 import json
-from application_exception import ApplicationException
+from exceptions.application_exception import ApplicationException
 
 
 def string_to_pdf(input_string, filename):
