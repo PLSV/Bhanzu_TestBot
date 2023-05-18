@@ -99,3 +99,18 @@ def answer_question(question_index, choice, explanation):
         raise ApplicationException(f"Invalid question number or choice. Please enter a valid question number or the correct choice", 400)
     except Exception as e:
         raise ApplicationException(f"Encountered an exception of type {e}")
+
+
+def submit_answers():
+    answers = dbutil.get_from_db("answers")
+    quiz_chat = dbutil.get_from_db("quiz_chat")
+    quiz_chat.extend([
+        {
+            "role": "user",
+            "content": prompts.submit_answers_prompt(answers)
+        }
+    ])
+    response = aiservice.get_completion_from_messages(messages=quiz_chat)
+    quiz_chat.append(response)
+    dbutil.add_to_db("quiz_chat", quiz_chat)
+    return response

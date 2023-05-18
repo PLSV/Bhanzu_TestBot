@@ -102,3 +102,13 @@ def get_question_prompt():
 
     Ensure that the json object is enclosed in between '<JSON>' and '</JSON>'.
     """
+
+
+def submit_answers_prompt(answers):
+    return f"""
+    These are the answers in the JSON format:
+    
+    {answers}
+    
+    Please evaluate the answers and give a score for the explanation given for the answer. This score will be from 0 to 10.
+    """
