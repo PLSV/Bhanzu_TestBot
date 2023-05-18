@@ -14,7 +14,7 @@ def quizmaster():
                     "content": prompts.setup_roleplay_prompt()
                 },
                 {
-                    "role": "assistant",
+                    "role": "user",
                     "content": prompts.set_role_prompt({
                         "no_of_questions": 5
                     })
