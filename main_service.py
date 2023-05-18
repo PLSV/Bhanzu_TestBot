@@ -4,29 +4,42 @@ import openai_service as aiservice
 import prompt_completions as prompts
 from application_exception import ApplicationException
 
-def quizmaster():
+def quizmaster_setup():
     try:
+        intro_prompt = dbutil.get_from_db("intro_message")
+        if not intro_prompt:
+            raise ApplicationException("You have not introduced yourself yet. Please do so by entering your name, grade and teacher", 400)
         starting_prompt = dbutil.get_from_db("quiz_chat")
-        if not starting_prompt:
-            starting_prompt = [
-                {
-                    "role": "system",
-                    "content": prompts.setup_roleplay_prompt()
-                },
-                {
-                    "role": "user",
-                    "content": prompts.set_role_prompt({
-                        "no_of_questions": 5
-                    })
-                }]
-            dbutil.add_to_db("quiz_chat", starting_prompt)
+        starting_prompt.extend([
+            {
+                "role": "system",
+                "content": prompts.setup_roleplay_prompt()
+            },
+            {
+                "role": "user",
+                "content": prompts.set_role_prompt({
+                    "no_of_questions": 5
+                })
+            },
+            {
+                "role": "assistant",
+                "content": "Understood. I shall wait for your instructions."
+            },
+            {
+                "role": "user",
+                "content": prompts.get_options_for_student()
+            }
+        ])
+        dbutil.add_to_db("quiz_chat", starting_prompt)
         response = aiservice.get_completion_from_messages(messages=starting_prompt)
         starting_prompt.append(response)
         dbutil.add_to_db("quiz_chat", starting_prompt)
-        return response.dict()
+        return response
     except Exception as e:
         return {"Error": f"Encountered an exception of type {e}"}
-        
+
+quizmaster_setup()
+
 def introfunction(intro_payload):
     try:
         intro = dbutil.get_from_db("intro_message")

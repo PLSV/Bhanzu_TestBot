@@ -14,4 +14,8 @@ def get_completion_from_messages(messages, model="gpt-3.5-turbo", temperature=1)
         messages=messages,
         temperature=temperature,
     )
-    return response.choices[0].message
+    to_return = response.choices[0].message
+    return {
+        "content": to_return.get("content"),
+        "role": to_return.get("role")
+    }
