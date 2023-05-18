@@ -23,7 +23,7 @@ async def introduce_yourself(
         body = await request.body()
         body_str = body.decode()
         data_dict = json.loads(body_str)
-        return JSONResponse(main_service.introfunction(data_dict))
+        return JSONResponse(prompt_service.introfunction(data_dict))
     except ApplicationException as ae:
         error_response = ErrorResponse(ae.error, "application-exception")
         return JSONResponse(content=error_response.dict(), status_code=ae.status_code)

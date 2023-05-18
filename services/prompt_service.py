@@ -1,6 +1,6 @@
 import utils.utility as util
 import utils.database_utility as dbutil
-import openai_service as aiservice
+import services.openai_service as aiservice
 import prompt_completions as prompts
 from exceptions.application_exception import ApplicationException
 
