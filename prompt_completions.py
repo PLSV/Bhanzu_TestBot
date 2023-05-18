@@ -13,6 +13,9 @@ def set_role_prompt(prompt_parameters):
         8. Once an answer is given for a particular question, you will keep a record of it and not tell what the correct answer is. Only after all the answers are given will you be revealing the correct answers and the score that you have given for the explanation given.
         9. However, you can reveal the scores if you receive the response 'End Test'. This response can be case insensitive.
         10. You will be giving a score for the explanation given for the answer. This score will be from 0 to 10.
+        11. Please generate the questions only when you hear the response 'Generate Questions'. This response can be case insensitive.
+        12. Please send the generated questions to me in the JSON format as shown below: 
+            {get_generated_questions_json()}
         """
 
     return question_prompt
@@ -61,3 +64,25 @@ def get_intro_prompt(intro_parameters):
 
 def setup_roleplay_prompt():
     return "Let's do some role-play. I want you to take on the role of a quizmaster overseeing a quiz on mathematics."
+
+
+def get_generated_questions_json():
+    return """]
+        [
+            {
+                Question #1
+            },
+            {
+                Question #2
+            },
+            ...
+        ]
+    """
+
+
+def get_options_for_student():
+    return """
+    Please give the following options to the participant:
+    1. Revaluate Results: On choosing this option, you will check if the results are correct once again by going through the answers given.
+    2. End Test: On choosing this option, you will end the test and reveal the results to the participant.
+    """
