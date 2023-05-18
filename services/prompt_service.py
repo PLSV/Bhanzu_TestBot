@@ -74,3 +74,28 @@ def introfunction(intro_payload):
         return {"response": response["content"]}
     except Exception as e:
         raise ApplicationException(f"Encountered an exception of type {e}")
+
+def answer_question(question_index, choice, explanation):
+    try:
+        questions = dbutil.get_from_db("questions")
+        if not questions:
+            raise ApplicationException("You have not fetched the questions yet. Please do so by entering the command get questions", 400)
+        question = questions[question_index-1].get("Question")
+        answer = questions[question_index-1].get("Options")[choice-1]
+        response = {
+            "question_no": question_index,
+            "question": question,
+            "chosen_answer": answer,
+            "explanation": explanation
+        }
+        answers_data = dbutil.get_from_db("answers")
+        if not answers_data:
+            dbutil.add_to_db("answers", [response])
+        else:
+            answers_data.append(response)
+            dbutil.add_to_db("answers", answers_data)
+        return response
+    except IndexError as e:
+        raise ApplicationException(f"Invalid question number or choice. Please enter a valid question number or the correct choice", 400)
+    except Exception as e:
+        raise ApplicationException(f"Encountered an exception of type {e}")
