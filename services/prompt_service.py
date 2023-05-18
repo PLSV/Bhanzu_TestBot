@@ -121,7 +121,5 @@ def get_next_question(question_number):
     if not questions:
         raise ApplicationException("You have not fetched the questions yet. Please do so by entering the command get questions", 400)
     if question_number < len(questions):
-        return questions[question_number-1], True
-    elif question_number == len(questions):
-        return questions[question_number-1], False
+        return questions[question_number], True
     return None, False
