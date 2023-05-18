@@ -19,11 +19,13 @@ def upload_to_s3(filename, bucket_name, object_name):
 def extract_json_from_string(string_with_json):
     json_pattern = r"<JSON>(.*?)<\/JSON>"
     json_match = re.search(json_pattern, string_with_json, re.DOTALL)
-
+    print("json_match: ", json_match)
     if json_match:
         extracted_text = json_match.group(1)
         cleaned_json = re.sub(r"\s+", " ", extracted_text)
+        print("cleaned_json: ", cleaned_json)
         json_data = json.loads(cleaned_json)
+        print("formatted_json: ", json_data)
         return json_data
     else:
         raise ApplicationException("No JSON found in the string", 400)

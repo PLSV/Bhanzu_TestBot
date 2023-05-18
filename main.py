@@ -9,13 +9,14 @@ from fastapi import Request
 from exceptions.application_exception import ApplicationException
 from helpers.response_helper import ErrorResponse
 from routers.routers_source import router
+from utils.models import UserData
 
 app = FastAPI()
 app.include_router(router)
 logger = logging.getLogger("gunicorn.error")
 
 
-@app.post("/introduction")
+@app.get("/introduction")
 async def introduce_yourself(
     request: Request,
 ):
