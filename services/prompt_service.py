@@ -75,7 +75,7 @@ def introfunction(intro_payload):
     except Exception as e:
         raise ApplicationException(f"Encountered an exception of type {e}")
 
-def answer_question(question_index, choice, explanation):
+def capture_answer(question_index, choice, explanation):
     try:
         questions = dbutil.get_from_db("questions")
         if not questions:
