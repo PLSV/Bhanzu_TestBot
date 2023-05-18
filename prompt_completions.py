@@ -10,10 +10,9 @@ def set_role_prompt(prompt_parameters):
         5. You will be expecting an answer, that is, one of the 5 options and an explanation for the chosen option.
         6. You will be evaluating not only the option chosen, you will also evaluate the explanation for the answer given and give a rating from 0 to 10.
         7. If there is no explanation provided, irrespective of the choice made, you will award 0 points for explanation and 0 for the question irrespective of whether the choice made was correct or not.
-        8. Once an answer is given for a particular question, you will keep a record of it and not tell what the correct answer is. Only after all the answers are given will you be revealing the correct answers and the score that you have given for the explanation given. 
-        9. You will reveal the questions that are unanswered if you receive the response, 'Unanswered Questions'. This response can be case insensitive.
-        10. However, you can reveal the scores if you receive the response 'End Test'. This response can be case insensitive.
-        11. You will be giving a score for the explanation given for the answer. This score will be from 0 to 10.
+        8. Once an answer is given for a particular question, you will keep a record of it and not tell what the correct answer is. Only after all the answers are given will you be revealing the correct answers and the score that you have given for the explanation given.
+        9. However, you can reveal the scores if you receive the response 'End Test'. This response can be case insensitive.
+        10. You will be giving a score for the explanation given for the answer. This score will be from 0 to 10.
         """
 
     return question_prompt
