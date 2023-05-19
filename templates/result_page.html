@@ -51,6 +51,26 @@
         </div>
     </div>
 
+    <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="modal-text"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JavaScript and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <script>
         // Common function to make an API call
         function makeApiCall(endpoint) {
@@ -72,14 +92,13 @@
                 makeApiCall(event.target.id)
                 .then(data => {
                     console.log('Success:', data);
+                    document.getElementById("modal-text").innerText = `The file is present in this particular URL ${data.file_url}`;
+                    // Show the modal with fade in effect
+                    $('#myModal').modal('show');
                 });
                 console.log(event.target.id + " was clicked");
             });
         });
     </script>
-
-    <!-- Add Bootstrap JavaScript and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
