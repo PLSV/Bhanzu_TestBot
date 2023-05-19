@@ -26,8 +26,8 @@
                         <label for="reason">Reason:</label>
                         <input type="text" id="reason" name="reason" class="form-control">
                     </div>
-                    <input type="hidden" name="question_number" value="{{ question_number }}">
-                    <input type="hidden" name="test_id" value="{{ test_id }}">
+                    <input type="hidden" name="question_number" value="{{ question_number }}" required>
+                    <input type="hidden" name="test_id" value="{{ test_id }}" required>
                     <button type="submit" class="btn btn-primary mt-3">Submit</button>
                 </form>
             </div>
