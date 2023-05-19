@@ -127,6 +127,9 @@ def get_next_question(question_number):
 
 
 def generate_scope_of_improvement():
+    scope_of_improvement = dbutil.get_from_db("scope_of_improvement")
+    if scope_of_improvement:
+        return scope_of_improvement
     improvement_prompt = prompts.generate_improvement_prompt()
     quiz_chat = dbutil.get_from_db("quiz_chat")
     quiz_chat.extend([
@@ -143,6 +146,9 @@ def generate_scope_of_improvement():
 
 
 def generate_study_plan():
+    study_plan = dbutil.get_from_db("study_plan")
+    if study_plan:
+        return study_plan
     study_prompt = prompts.generate_study_plan_prompt()
     quiz_chat = dbutil.get_from_db("quiz_chat")
     quiz_chat.extend([

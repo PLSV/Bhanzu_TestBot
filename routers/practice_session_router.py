@@ -63,3 +63,14 @@ async def evaluate_response(request: Request):
     # result = prepare_result_page(request)
     return result
 
+
+@router.post("/improvement_plan")
+async def get_improvement_plan():
+    result = TestService.get_improvement_plan()
+    return result
+
+
+@router.post("/improvement_scope")
+async def get_improvement_scope():
+    result = TestService.get_improvement_scope()
+    return result

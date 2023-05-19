@@ -22,3 +22,13 @@ class TestService:
     def get_result(only_evaluate=False):
         test_result = prompt_service.submit_answers(only_evaluate)
         return test_result
+
+    @staticmethod
+    def get_improvement_plan():
+        study_plan = prompt_service.generate_study_plan()
+        return study_plan.get("content")
+
+    @staticmethod
+    def get_improvement_scope():
+        scope_of_improvement = prompt_service.generate_scope_of_improvement()
+        return scope_of_improvement.get("content")
