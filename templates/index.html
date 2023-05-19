@@ -4,8 +4,30 @@
         <title>Practice Test</title>
         <!-- Add Bootstrap CSS -->
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            /* Add styles for the loading overlay */
+            #loading-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.7);
+                z-index: 9999;
+            }
+            #loading-overlay img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        </style>
     </head>
     <body>
+        <div id="loading-overlay">
+            <img src="https://tenor.com/en-GB/view/superhirn-mathematics-gif-24119856"> <!-- Replace with your own loading gif -->
+        </div>
         <div class="container">
             <p class="mt-5 text-center">Welcome to Practice Session</p>
             <div class="row justify-content-center">

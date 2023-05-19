@@ -2,64 +2,44 @@
 <html>
 <head>
     <title>Question</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-        }
-        h1, p {
-            margin: 0 0 15px 0;
-            padding: 0;
-        }
-        form {
-            max-width: 500px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 4px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        label, input[type="text"] {
-            display: block;
-            margin-bottom: 10px;
-        }
-        input[type="submit"] {
-            background-color: #007BFF;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Question {{ question_number }}</h1>
+        <p class="mt-3">{{ question_text }}</p>
+        <p>A {{option_1}}</p>
+        <p>B {{option_2}}</p>
+        <p>C {{option_3}}</p>
+        <p>D {{option_4}}</p>
+        <p>E {{option_5}}</p>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <form method="POST" action="/practice/capture/response" class="p-4 border rounded bg-white mt-3">
+                    <div class="form-group">
+                        <label for="option_chosen">Correct Option:</label>
+                        <input type="text" id="option_chosen" name="option_chosen" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="reason">Reason:</label>
+                        <input type="text" id="reason" name="reason" class="form-control">
+                    </div>
+                    <input type="hidden" name="question_number" value="{{ question_number }}">
+                    <input type="hidden" name="test_id" value="{{ test_id }}">
+                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JavaScript and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         window.onload = function() {
             document.getElementById('option_chosen').focus();
         };
     </script>
-</head>
-<body>
-
-    <h1>Question {{ question_number }}</h1>
-    <p>{{ question_text }}</p><br>
-    <p>A {{option_1}}</p><br>
-    <p>B {{option_2}}</p><br>
-    <p>C {{option_3}}</p><br>
-    <p>D {{option_4}}</p><br>
-    <p>E {{option_5}}</p><br>
-    <form method="POST" action="/practice/capture/response">
-        <label for="option_chosen">Correct Option:</label><br>
-        <input type="text" id="option_chosen" name="option_chosen"><br><br>
-        <label for="reason">Reason:</label><br>
-        <input type="text" id="reason" name="reason"><br><br>
-        <input type="hidden" name="question_number" value="{{ question_number }}">
-        <input type="hidden" name="test_id" value="{{ test_id }}">
-        <input type="submit" value="Submit">
-    </form>
 </body>
 </html>
