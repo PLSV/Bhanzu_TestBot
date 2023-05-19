@@ -32,6 +32,7 @@ def extract_json_from_string(string_with_json):
             raise ApplicationException("No JSON found in the string", 400)
     except Exception as e:
         return extract_json_from_json_regexp(string_with_json)
+
 def extract_json_from_json_regexp(string_with_json):
     start_index = string_with_json.find("[")
     end_index = string_with_json.rfind("]") + 1
