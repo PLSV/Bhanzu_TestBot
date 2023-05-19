@@ -33,13 +33,26 @@
             document.querySelector('#resultBox').style.visibility = 'visible';
         };
     </script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <textarea id="resultBox" readonly>{{ result }}</textarea>
-    <div class="button-container">
-        <button>Button 1</button>
-        <button>Button 2</button>
-        <button>Button 3</button>
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <textarea class="form-control" id="resultBox" readonly>{{ result }}</textarea>
+                </div>
+                <div class="btn-group col-md-12" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-primary mr-2">Button 1</button>
+                    <button type="button" class="btn btn-secondary mr-2">Button 2</button>
+                    <button type="button" class="btn btn-success">Button 3</button>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- Add Bootstrap JavaScript and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
