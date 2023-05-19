@@ -124,3 +124,35 @@ def get_next_question(question_number):
     if question_number < len(questions):
         return questions[question_number], True
     return None, False
+
+
+def generate_scope_of_improvement():
+    improvement_prompt = prompts.generate_improvement_prompt()
+    quiz_chat = dbutil.get_from_db("quiz_chat")
+    quiz_chat.extend([
+        {
+            "role": "user",
+            "content": improvement_prompt
+        }
+    ])
+    response = aiservice.get_completion_from_messages(messages=quiz_chat)
+    quiz_chat.append(response)
+    dbutil.add_to_db("quiz_chat", quiz_chat)
+    dbutil.add_to_db("scope_of_improvement", response)
+    return response
+
+
+def generate_study_plan():
+    study_prompt = prompts.generate_study_plan_prompt()
+    quiz_chat = dbutil.get_from_db("quiz_chat")
+    quiz_chat.extend([
+        {
+            "role": "user",
+            "content": study_prompt
+        }
+    ])
+    response = aiservice.get_completion_from_messages(messages=quiz_chat)
+    quiz_chat.append(response)
+    dbutil.add_to_db("quiz_chat", quiz_chat)
+    dbutil.add_to_db("study_plan", response)
+    return response
