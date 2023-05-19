@@ -22,8 +22,8 @@ def prepare_question_page_html(question_json, question_number, request, test_id=
         "question_page.html", template_dict)
 
 
-def prepare_result_page(request):
-    template_dict = {"request": request}
+def prepare_result_page(request, result):
+    template_dict = {"request": request, "result": result}
     return templates.TemplateResponse(
         "result_page.html", template_dict)
 
@@ -54,9 +54,8 @@ async def capture_response(request: Request):
         return question_page
     else:
         result = TestService.get_result()
-        return result
-        # result_page = prepare_result_page(request)
-        # return result_page
+        result_page = prepare_result_page(request, result)
+        return result_page
 
 
 @router.get("/evaluate_response")
