@@ -114,6 +114,7 @@ def submit_answers(only_evaluate=False):
     if not only_evaluate:
         quiz_chat.append(response)
         dbutil.add_to_db("quiz_chat", quiz_chat)
+        dbutil.add_to_db("test_report", response)
     return response
 
 

@@ -62,8 +62,9 @@ async def capture_response(request: Request):
 @router.get("/evaluate_response")
 async def evaluate_response(request: Request):
     result = TestService.get_result(only_evaluate=True)
-    # result = prepare_result_page(request)
-    return result
+    file_name = utility.string_to_pdf(result, "worksheet_report.pdf")
+    file_url = utility.upload_to_s3(file_name)
+    return JSONResponse({"response": result, "file_url": file_url})
 
 
 @router.post("/improvement_plan")

@@ -21,7 +21,7 @@ class TestService:
     @staticmethod
     def get_result(only_evaluate=False):
         test_result = prompt_service.submit_answers(only_evaluate)
-        return test_result
+        return test_result.get("content")
 
     @staticmethod
     def get_improvement_plan():
