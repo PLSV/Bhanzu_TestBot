@@ -1,3 +1,61 @@
 <!DOCTYPE html>
-
-<html>\n<head>\n<style>\ntable, th, td {\n  border: 1px solid black;\n  border-collapse: collapse;\n}\nth, td {\n  padding: 5px;\n  text-align: left;    \n}\n</style>\n</head>\n<body>\n\n<table style=\"width:100%\">\n  <tr>\n    <th>Question No.</th>\n    <th>Question</th> \n    <th>Chosen Answer</th>\n    <th>Explanation</th>\n    <th>Score for Answer</th>\n    <th>Score for Explanation</th>\n  </tr>\n  <tr>\n    <td>1</td>\n    <td>What is 4 multiplied by 8?</td>\n    <td>32</td>\n    <td>4 multiplied by 8 is 32</td>\n    <td>10</td>\n    <td>10</td>\n  </tr>\n  <tr>\n    <td>2</td>\n    <td>What is a right-angled triangle with two 45-degree angles called?</td>\n    <td>isosceles triangle</td>\n    <td>both sides are equal hence isosceles triangle</td>\n    <td>0</td>\n    <td>5</td>\n  </tr>\n   <tr>\n    <td>3</td>\n    <td>Calculate the area of a rectangle with length 10cm and breadth 5cm?</td>\n    <td>50cm²</td>\n    <td>height into width gives the area of a rectangle</td>\n    <td>10</td>\n    <td>10</td>\n  </tr>\n  <tr>\n    <td>4</td>\n    <td>Simplify: 7x - 4x + 2 = 12</td>\n    <td>x = 4</td>\n    <td>correct answer is 10/3 there is no such option here</td>\n    <td>0</td>\n    <td>0</td>\n  </tr>\n  <tr>\n    <td>5</td>\n    <td>What is the formula for the area of a circle?</td>\n    <td>πr²</td>\n    <td>area of cirlcle is pi multiplied with square of radius</td>\n    <td>10</td>\n    <td>10</td>\n  </tr>\n</table>\n\n</body>\n</html>
+<html>
+<head>
+    <title>Quiz Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 80%;
+            margin: 50px auto;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+            border: 1px solid black;
+        }
+        th {
+            background-color: #007BFF;
+            color: #fff;
+        }
+        td {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            document.querySelector('table').style.visibility = 'visible';
+        };
+    </script>
+</head>
+<body>
+    <table style="visibility:hidden">
+        <tr>
+            <th>Question No.</th>
+            <th>Question</th>
+            <th>Chosen Answer</th>
+            <th>Explanation</th>
+            <th>Score for Answer</th>
+            <th>Score for Explanation</th>
+        </tr>
+        <!-- Repeat for each row of data -->
+        <tr>
+            <td>1</td>
+            <td>What is 4 multiplied by 8?</td>
+            <td>32</td>
+            <td>4 multiplied by 8 is 32</td>
+            <td>10</td>
+            <td>10</td>
+        </tr>
+        <!-- ... -->
+    </table>
+</body>
+</html>
