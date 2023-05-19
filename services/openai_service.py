@@ -5,9 +5,9 @@ import json
 
 def setup():
     openai_api_key = os.environ.get('OPENAI_API_KEY')
-    openai_organisation_id = os.environ.get('OPENAI_ORGANISATION_ID')
+    # openai_organisation_id = os.environ.get('OPENAI_ORGANISATION_ID')
     openai.api_key = openai_api_key
-    openai.organization = openai_organisation_id
+    # openai.organization = openai_organisation_id
 
 
 def get_completion_from_messages(messages, model="gpt-3.5-turbo", temperature=1):
