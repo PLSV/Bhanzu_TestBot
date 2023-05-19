@@ -77,6 +77,6 @@ async def get_improvement_plan():
 @router.post("/improvement_scope")
 async def get_improvement_scope():
     result = TestService.get_improvement_scope()
-    file_name = utility.string_to_pdf(result, "improvement_plan.pdf")
+    file_name = utility.string_to_pdf(result, "improvement_scope.pdf")
     file_url = utility.upload_to_s3(file_name)
     return JSONResponse({"file_url": file_url})
