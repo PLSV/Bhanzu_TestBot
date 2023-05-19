@@ -102,6 +102,9 @@ def capture_answer(question_index, choice, explanation):
 
 
 def submit_answers(only_evaluate=False):
+    test_report = dbutil.get_from_db("test_report")
+    if test_report:
+        return test_report
     answers = dbutil.get_from_db("answers")
     quiz_chat = dbutil.get_from_db("quiz_chat")
     quiz_chat.extend([
