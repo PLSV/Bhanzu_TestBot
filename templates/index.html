@@ -2,53 +2,54 @@
 <html>
     <head>
         <title>Practice Test</title>
+        <!-- Add Bootstrap CSS -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-                background-color: #f0f0f0;
+            /* Add styles for the loading overlay */
+            #loading-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.7);
+                z-index: 9999;
             }
-            form {
-                max-width: 500px;
-                margin: 50px auto;
-                padding: 20px;
-                background-color: #fff;
-                border-radius: 4px;
-                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            }
-            label, input {
-                display: block;
-                margin-bottom: 10px;
-            }
-            input[type="submit"] {
-                background-color: #007BFF;
-                color: #fff;
-                padding: 10px 20px;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-            }
-            input[type="submit"]:hover {
-                background-color: #0056b3;
+            #loading-overlay img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
             }
         </style>
+    </head>
+    <body>
+        <div id="loading-overlay">
+            <img src="loading.gif"> <!-- Replace with your own loading gif -->
+        </div>
+        <div class="container">
+            <p class="mt-5 text-center">Welcome to Practice Session</p>
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <form id="my-form" method="POST" action="/practice/receive/user" class="p-4 border rounded bg-white shadow">
+                        <!-- Form contents... -->
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Add Bootstrap JavaScript and jQuery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script>
             window.onload = function() {
                 document.getElementById('fname').focus();
             };
+            // When the form is submitted, show the loading overlay
+            document.getElementById('my-form').addEventListener('submit', function() {
+                document.getElementById('loading-overlay').style.display = 'block';
+            });
         </script>
-    </head>
-    <body>
-        <p>Welcome to Practice Session</p>
-        <form method="POST" action="/practice/receive/user">
-          <label for="fname">Name:</label><br>
-          <input type="text" id="fname" name="fname"><br>
-            <label for="fgrade">Grade:</label><br>
-            <input type="number" id="fgrade" name="fgrade"><br><br>
-          <label for="fteacher">Teacher:</label><br>
-          <input type="text" id="fteacher" name="fteacher"><br><br>
-          <input type="submit" value="Submit">
-        </form>
     </body>
 </html>
