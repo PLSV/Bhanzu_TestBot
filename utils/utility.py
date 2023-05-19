@@ -1,13 +1,22 @@
 import boto3
 from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.utils import simpleSplit
 import re
 import json
 from exceptions.application_exception import ApplicationException
 
 
 def string_to_pdf(input_string, filename):
-    c = canvas.Canvas(filename)
-    c.drawString(100, 750, input_string)
+    c = canvas.Canvas(filename, pagesize=letter)
+    c.setFont("Helvetica", 10)
+    x = 10
+    y = 750
+    max_width = 550
+    lines = simpleSplit(input_string, 'Helvetica', 10, max_width)
+    for line in lines:
+        c.drawString(x, y, line)
+        y -= 12
     c.save()
 
 
@@ -15,6 +24,7 @@ def upload_to_s3(filename, bucket_name, object_name):
     s3_client = boto3.client('s3')
     response = s3_client.upload_file(filename, bucket_name, object_name)
     return response
+
 
 def extract_json_from_string(string_with_json):
     try:
@@ -32,6 +42,7 @@ def extract_json_from_string(string_with_json):
             raise ApplicationException("No JSON found in the string", 400)
     except Exception as e:
         return extract_json_from_json_regexp(string_with_json)
+
 
 def extract_json_from_json_regexp(string_with_json):
     start_index = string_with_json.find("[")
