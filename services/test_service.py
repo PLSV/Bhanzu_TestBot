@@ -19,6 +19,6 @@ class TestService:
         return next_question
 
     @staticmethod
-    def get_result():
-        test_result = prompt_service.submit_answers()
+    def get_result(only_evaluate=False):
+        test_result = prompt_service.submit_answers(only_evaluate)
         return test_result

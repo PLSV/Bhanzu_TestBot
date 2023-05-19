@@ -101,7 +101,7 @@ def capture_answer(question_index, choice, explanation):
         raise ApplicationException(f"Encountered an exception of type {e}")
 
 
-def submit_answers():
+def submit_answers(only_evaluate=False):
     answers = dbutil.get_from_db("answers")
     quiz_chat = dbutil.get_from_db("quiz_chat")
     quiz_chat.extend([
@@ -111,8 +111,9 @@ def submit_answers():
         }
     ])
     response = aiservice.get_completion_from_messages(messages=quiz_chat)
-    quiz_chat.append(response)
-    dbutil.add_to_db("quiz_chat", quiz_chat)
+    if not only_evaluate:
+        quiz_chat.append(response)
+        dbutil.add_to_db("quiz_chat", quiz_chat)
     return response
 
 

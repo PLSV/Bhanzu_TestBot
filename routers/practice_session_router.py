@@ -23,13 +23,17 @@ def prepare_question_page_html(question_json, question_number, request, test_id=
 def prepare_result_page(request):
     template_dict = {"request": request}
     return templates.TemplateResponse(
-        "question_page.html", template_dict)
+        "result_page.html", template_dict)
 
 
-@router.get("/receive/user")
+@router.post("/receive/user")
 async def get_question(request: Request):
     # todo: read user details from form, prepare set of questions and send the first question
-    user_data = UserData(grade=6, name="amit", teacher="amitt")
+    forma_dara = await request.form()
+    name = forma_dara.getlist('fname')[0]
+    grade = forma_dara.getlist('fgrade')[0]
+    teacher = forma_dara.getlist('fteacher')[0]
+    user_data = UserData(grade=grade, name=name, teacher=teacher)
     questions_list = TestService.generate_test(user_data.dict())
     question_page = prepare_question_page_html(questions_list[0], 1, request)
     return question_page
@@ -51,3 +55,11 @@ async def capture_response(request: Request):
         return result
         # result_page = prepare_result_page(request)
         # return result_page
+
+
+@router.get("/evaluate_response")
+async def evaluate_response(request: Request):
+    result = TestService.get_result(only_evaluate=True)
+    # result = prepare_result_page(request)
+    return result
+
