@@ -20,10 +20,13 @@ def string_to_pdf(input_string, filename):
     c.save()
 
 
-def upload_to_s3(filename, bucket_name, object_name):
-    s3_client = boto3.client('s3')
-    response = s3_client.upload_file(filename, bucket_name, object_name)
-    return response
+def upload_to_s3(filename):
+    try:
+        s3_client = boto3.client('s3')
+        s3_client.upload_file(filename, "hackathon-worksheet", filename)
+        return f"https://hackathon-worksheet.s3.us-east-2.amazonaws.com/{filename}"
+    except Exception as e:
+        raise ApplicationException("Error uploading file to S3", 400)
 
 
 def extract_json_from_string(string_with_json):
