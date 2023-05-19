@@ -9,34 +9,37 @@
             padding: 0;
             background-color: #f0f0f0;
         }
-        table {
-            border: 1px solid black;
-            border-collapse: collapse;
+        #resultBox {
             width: 80%;
             margin: 50px auto;
+            padding: 20px;
             background-color: #fff;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        th, td {
-            padding: 5px;
-            text-align: left;
             border: 1px solid black;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-size: 18px;
+            color: #000;
         }
-        th {
-            background-color: #007BFF;
-            color: #fff;
+        .button-container {
+            text-align: center;
+            padding: 20px;
         }
-        td {
-            background-color: #f2f2f2;
+        .button-container button {
+            margin: 0 10px;
         }
     </style>
     <script>
         window.onload = function() {
-            document.querySelector('table').style.visibility = 'visible';
+            document.querySelector('#resultBox').style.visibility = 'visible';
         };
     </script>
 </head>
 <body>
-    {{ result }}
+    <textarea id="resultBox" readonly>{{ result }}</textarea>
+    <div class="button-container">
+        <button>Button 1</button>
+        <button>Button 2</button>
+        <button>Button 3</button>
+    </div>
 </body>
 </html>
