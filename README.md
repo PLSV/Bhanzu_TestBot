@@ -9,6 +9,7 @@ pip3 install pickledb
 pip3 install boto3
 pip3 install fastapi uvicorn
 pip3 install langchain
+pip3 install jinja2
 ```
 
 ```
