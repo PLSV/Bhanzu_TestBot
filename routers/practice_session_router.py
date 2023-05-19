@@ -2,6 +2,8 @@ from fastapi import Request, APIRouter
 from services.test_service import TestService
 from utils.models import UserData
 from fastapi.templating import Jinja2Templates
+from utils import utility
+from fastapi.responses import JSONResponse
 
 router = APIRouter(prefix="/practice")
 
@@ -67,10 +69,14 @@ async def evaluate_response(request: Request):
 @router.post("/improvement_plan")
 async def get_improvement_plan():
     result = TestService.get_improvement_plan()
-    return result
+    file_name = utility.string_to_pdf(result, "improvement_plan.pdf")
+    file_url = utility.upload_to_s3(file_name)
+    return JSONResponse({"file_url": file_url})
 
 
 @router.post("/improvement_scope")
 async def get_improvement_scope():
     result = TestService.get_improvement_scope()
-    return result
+    file_name = utility.string_to_pdf(result, "improvement_plan.pdf")
+    file_url = utility.upload_to_s3(file_name)
+    return JSONResponse({"file_url": file_url})

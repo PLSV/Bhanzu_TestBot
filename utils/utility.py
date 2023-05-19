@@ -18,6 +18,7 @@ def string_to_pdf(input_string, filename):
         c.drawString(x, y, line)
         y -= 12
     c.save()
+    return filename
 
 
 def upload_to_s3(filename):
