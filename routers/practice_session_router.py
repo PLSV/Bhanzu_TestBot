@@ -58,7 +58,7 @@ async def capture_response(request: Request):
         return result_page
 
 
-@router.get("/evaluate_response")
+@router.post("/report")
 async def evaluate_response(request: Request):
     result = TestService.get_result(only_evaluate=True)
     file_name = utility.string_to_pdf(result, "worksheet_report.pdf")
@@ -66,7 +66,7 @@ async def evaluate_response(request: Request):
     return JSONResponse({"response": result, "file_url": file_url})
 
 
-@router.post("/improvement_plan")
+@router.post("/plan")
 async def get_improvement_plan():
     result = TestService.get_improvement_plan()
     file_name = utility.string_to_pdf(result, "improvement_plan.pdf")
@@ -74,7 +74,7 @@ async def get_improvement_plan():
     return JSONResponse({"file_url": file_url})
 
 
-@router.post("/improvement_scope")
+@router.post("/scope")
 async def get_improvement_scope():
     result = TestService.get_improvement_scope()
     file_name = utility.string_to_pdf(result, "improvement_scope.pdf")

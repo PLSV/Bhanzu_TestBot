@@ -43,13 +43,40 @@
                     <textarea class="form-control" id="resultBox" readonly>{{ result }}</textarea>
                 </div>
                 <div class="btn-group col-md-12" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-primary mr-2">Button 1</button>
-                    <button type="button" class="btn btn-secondary mr-2">Button 2</button>
-                    <button type="button" class="btn btn-success">Button 3</button>
+                    <button type="button" class="btn btn-primary mr-2" id="report">Generate Report</button>
+                    <button type="button" class="btn btn-secondary mr-2" id="plan">Generate Study Plan</button>
+                    <button type="button" class="btn btn-success" id="scope">Generate Improvement Scope</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // Common function to make an API call
+        function makeApiCall(endpoint) {
+            return fetch(`http://localhost:80/practice/${endpoint}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+
+        // Add event listeners for the buttons
+        ['report', 'plan', 'scope'].forEach((buttonId) => {
+            document.getElementById(buttonId).addEventListener('click', function() {
+                makeApiCall(event.target.id)
+                .then(data => {
+                    console.log('Success:', data);
+                });
+                console.log(event.target.id + " was clicked");
+            });
+        });
+    </script>
 
     <!-- Add Bootstrap JavaScript and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
