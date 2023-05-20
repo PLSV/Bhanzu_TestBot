@@ -59,6 +59,7 @@ async def capture_response(request: Request):
         question_page = prepare_question_page_html(next_question, question_number+1, request)
         return question_page
     else:
+        voice_service.ask_user_to_wait_for_results()
         result = TestService.get_result()
         result_page = prepare_result_page(request, result)
         return result_page
