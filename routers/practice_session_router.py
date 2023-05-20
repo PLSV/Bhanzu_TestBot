@@ -4,6 +4,9 @@ from utils.models import UserData
 from fastapi.templating import Jinja2Templates
 from utils import utility
 from fastapi.responses import JSONResponse
+from services import voice_service
+import threading
+
 
 router = APIRouter(prefix="/practice")
 
@@ -24,6 +27,8 @@ def prepare_question_page_html(question_json, question_number, request, test_id=
 
 def prepare_result_page(request, result):
     template_dict = {"request": request, "result": result}
+    thread = threading.Thread(target=voice_service.read_report, args=(result,))
+    thread.start()
     return templates.TemplateResponse(
         "result_page.html", template_dict)
 
