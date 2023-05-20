@@ -89,7 +89,7 @@ def ask_user_to_wait_for_results():
     }
 
     data = {
-        "text": "Thank you for passing on your details. Please wait while we load your worksheet",
+        "text": "Thank you for passing on your details. Please wait while we load your results",
         "model_id": "eleven_monolingual_v1",
         "voice_settings": {
             "stability": 0.5,
