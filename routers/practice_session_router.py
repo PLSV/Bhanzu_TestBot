@@ -37,13 +37,12 @@ def prepare_result_page(request, result):
 async def get_question(request: Request):
     # todo: read user details from form, prepare set of questions and send the first question
     forma_dara = await request.form()
+    voice_service.request_user_to_wait()
     name = forma_dara.getlist('fname')[0]
     grade = forma_dara.getlist('fgrade')[0]
     teacher = forma_dara.getlist('fteacher')[0]
     user_data = UserData(grade=grade, name=name, teacher=teacher)
     questions_list = TestService.generate_test(user_data.dict())
-    thread = threading.Thread(target=voice_service.request_user_to_wait)
-    thread.start()
     question_page = prepare_question_page_html(questions_list[0], 1, request)
     return question_page
 
