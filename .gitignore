@@ -12,6 +12,7 @@ secrets.txt
 # Ignore all the .db .pdf files
 *.db
 *.pdf
+*.mp3
 *_db
 
 #Ignore all binaries and executables

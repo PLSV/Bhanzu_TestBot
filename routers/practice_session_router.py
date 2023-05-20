@@ -42,6 +42,8 @@ async def get_question(request: Request):
     teacher = forma_dara.getlist('fteacher')[0]
     user_data = UserData(grade=grade, name=name, teacher=teacher)
     questions_list = TestService.generate_test(user_data.dict())
+    thread = threading.Thread(target=voice_service.request_user_to_wait)
+    thread.start()
     question_page = prepare_question_page_html(questions_list[0], 1, request)
     return question_page
 
